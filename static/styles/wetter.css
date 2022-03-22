@@ -1,0 +1,25 @@
+	.m_wetter{
+		width:300px;
+		height:100px;
+		background-color:var(--black);
+		margin:5px;
+		padding:10px;
+		border-left:1px solid var(--dark-blue);
+		border-bottom:1px solid var(--dark-blue);
+		position:relative;
+
+		
+	}
+	
+	.wetter_title--weiss{
+		color:var(--white);
+		text-align:left;
+		margin:0px;
+		padding:0px;
+	}
+	.wetter_title--blau{
+		color:var(--blue);
+		text-align:left;
+		margin:5px;
+		padding:0px;
+	}
