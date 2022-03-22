@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form">
+	
+  <form method="POST" class="form">
+
+    <h1>Update Note</h1>
+	
+	{{ form.csrf_token }}
+	<br>
+	
+	<div class="form-group">
+	{{ form.title.label }} {{ form.title(class_="form-control", size=20, value=title) }}
+	</div>
+	
+	<div class="form-group">
+	{{ form.text.label }} {{ form.text(class_="note_area", cols="35", rows="20") }}
+	</div>
+	
+	<div class="form-group">
+    <input class="form-control" type="submit" name="update_note" value="Update">
+	</div>
+	
+	<!--<a href="{{ url_for('delete_note', id=note_id) }}"> Delete </a>-->
+  </form>
+	
+	<script>
+	val = "{{text}}";
+	document.getElementsByClassName('note_area')[0].value=val;
+	</script>
+	
+</div>
+{% endblock %}
