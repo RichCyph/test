@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="hidden_cache">
+	<h1 id="home_title">{{user.home_title}}</h1>
+  <h1 id="name">{{user.name}}</h1>
+	<h1 id="morning_greeting">{{user.morning_greeting}}</h1>
+	<h1 id="afternoon_greeting">{{user.afternoon_greeting}}</h1>
+	<h1 id="evening_greeting">{{user.evening_greeting}}</h1>
+	<h1 id="night_greeting">{{user.night_greeting}}</h1>
+
+	<h1 id="latitude">{{user.latitude}}</h1>
+	<h1 id="longitude">{{user.longitude}}</h1>
+	<h1 id="country">{{user.country}}</h1>
+</div>
+
+<div class="links-col" id="links-col">
+	<div class="links-col-panel" id="links-col-panel-1">
+		<h1 class="logo_title--weiss" id="logo_title_id">{{user.home_title}}</h1>
+		<canvas id="canvas2"></canvas>
+	</div><!-- logo ende -->
+
+	<div class="m_zeit, links-col-panel" id="m_zeit_id">
+
+		<h2 class="zeit_title--weiss" id="tageszeit"></h2>
+		<h2 class="zeit_title--blau" id="benutzer_name"></h2>
+		<br>
+		<h3 class="zeit_title--weiss" id="zeit_title_id">Zeit</h3>
+		<h3 class="zeit_title--blau" id="uhr"></h3>
+		<br>
+		<h3 class="zeit_title--weiss" id="date_title_id">Date</h3>
+		<h3 class="zeit_title--blau" id="datum"></h3>
+
+	</div> <!-- zeit ende -->
+
+	<div class="m_wetter, links-col-panel" id="m_wetter_id">
+		<h3 class="wetter_title--weiss" id="wetter_standort">Nirgendwo</h3>
+		<h3 class="wetter_title--blau" id="temp"></h3>
+		<h3 class="wetter_title--blau" id="gefuhl"></h3>
+	</div><!-- wetter ende -->
+
+	<div class="loginout, links-col-panel", id="links-col-panel-4">
+		<br>
+		<a href="{{ url_for('update_user') }}" onmouseover="PlaySound('mySound')"
+		onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Update Settings</a>
+		<hr>
+		<a href="{{ url_for('logout') }}" onmouseover="PlaySound('mySound')"
+			onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Logout</a>
+
+		<br>
+	</div>
+
+</div><!-- links col ende -->
+
+<div class="mitte-col" id="mitte-col">
+
+	<div class="m_suche, mitte-col-panel-1" id="m_suche_id">
+		<h1 class="suche_title--weiss" >Suche</h1>
+		<input class="suche_input" id="suche_input" placeholder="options : !g | !y | !w"></input>
+	</div><!-- suche ende -->
+
+	<div class="m_lesenzeichen, mitte-col-panel-2" id="m_lesenzeichen_id">
+
+		<h1 class="lesenzeichen_title--weiss" id="lesezeichen_title_id">Lesenzeichen</h1>
+		<br>
+
+		<div class="all_lesenzeichen_listen">
+			<script>var kurz_taste_wb = new Map();</script>
+			{% if subjects %}
+
+				{% for subject in subjects %}
+					<div class="lesenzeichen_list_block">
+						<h3 class="lesenzeichen_liste_title--weiss" id="arbeit_title_id" >
+
+						<a href="{{ url_for('update_subject', subject_id=subject.id) }}" onmouseover="PlaySound('mySound')"
+						onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">
+
+						<span class="subject_title">{{ subject.title }}</span></a></h3>
+
+							<ul class="lesen_zeichen_liste_ul">
+
+								{% for bookmark in subject.bookmarks %}
+
+									<script>kurz_taste_wb.set("{{bookmark.hotkey}}","{{bookmark.link}}");</script>
+
+									<li class="lesen_zeichen_liste_element--weiss">
+
+										<span class="lesenzeichen_kurz_name"><a href="{{bookmark.link}}" onmouseover="PlaySound('mySound')"
+										onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')" target="_blank">{{bookmark.hotkey}}</a></span>
+
+										<span class="lesenzeichen_lange_name">
+										<a href="{{bookmark.link}}" onmouseover="PlaySound('mySound')"
+										onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')" target="_blank">{{bookmark.title}}</a></span>
+
+										<span class="lesenzeichen_kurz_name">
+										<a href="{{ url_for('update_bookmark', bookmark_id=bookmark.id, subject_id=subject.id) }}"
+										onmouseover="PlaySound('mySound')"
+										onmouseout="StopSound('mySound')"
+										onclick="PlaySound('mygoSound')">
+										edit</a>
+										</span>
+
+									</li>
+
+
+								{% endfor %}
+
+							</ul>
+					<a href="{{ url_for('create_bookmark', id=subject.id) }}" onmouseover="PlaySound('mySound')"
+					onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">New</a>
+
+					</div>
+				{% endfor %}
+
+			{% endif %}
+			<br><br>
+			<a href="{{ url_for('create_subject') }}" onmouseover="PlaySound('mySound')"
+				onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Add Subject</a>
+		</div> <!--ende alle lesezeichen liste-->
+	</div> <!--ende lesezeichen -->
+</div> <!-- ende mitte-col -->
+
+<div class="rechts-col" id="rechts-col">
+
+	<div class="m_zeitgeber, rechts-col-panel-1" id="m_zeitgeber_id">
+		<h4 class="zeitgeber_title--weiss" id="zeitgeber_title_id">Notes</h4>
+		<hr class="zeitgeber_hr">
+
+		{% if notes %}
+
+			{% for note in notes %}
+
+				<div  class="note_section">
+					<br>
+					<h1 class="zeitgeber_uhr--weiss"></h1>
+					<p>{{note.text}}</p>
+				</div>
+
+				<br>
+
+				<a href="{{ url_for('update_note', id=note.id)}}" onmouseover="PlaySound('mySound')"
+				onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">edit</a><br>
+			{% endfor %}
+
+		{% endif %}
+	</div><!-- timer ende-->
+
+
+<div class="m_nachrichten, rechts-col-panel-2" id="m_nachrichten_id">
+	<h3 class="nachrichten_title--weiss" id="kryptowahrung_title_id">kryptowahrung</h3>
+	<hr class="munzen_hr">
+	<br>
+
+	<div>
+		<script>const global_query_liste2 = [];</script>
+			<ul id="munzen">
+
+				{% for crypto in cryptos %}
+
+				<!--	<script>global_query_liste2.push(["{{crypto.crypto_acronym}}","{{crypto.fiat_acronym}}", "{{crypto.id}}" ]);</script>-->
+
+					<li class="munzen_list_element">
+						<span class='krypto_info_links--blau'>{{crypto.crypto_acronym}}</span>
+						<span class='hidden_element'>{{crypto.fiat_acronym}}</span>
+						<span class='hidden_element'>{{crypto.id}}</span>
+						<span class='krypto_info_rechts--weiss'></span>
+						<span class='krypto_info_rechts--weiss'><a href="{{ url_for('update_crypto',  id=crypto.id)}}" onmouseover="PlaySound('mySound')"
+							onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')"> Edit</a></span>
+					</li>
+
+				{% endfor %}
+			</ul>
+
+		<a href="{{ url_for('create_crypto')}}" onmouseover="PlaySound('mySound')"
+		onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Add New Crypto</a>
+	</div>
+</div>
+
+</div>
+<!--
+<script>
+//Urh Global Variablen
+var global_benutzer_name = "{{user.name}}!";
+
+//begrussungen
+var global_morgengruss = "{{user.morning_greeting}}";
+var global_nachmittaggruss = "{{user.afternoon_greeting}}";
+var global_abendgruss = "{{user.evening_greeting}}";
+var global_nachtgruss = "{{user.night_greeting}}";
+
+//Wetter Global Variablen
+var global_lat = "{{user.latitude}}";
+var global_lon = "{{user.longitude}}";
+var global_lande_texte = "{{user.country}}";
+
+var global_sprachen_auswahl = "de" //en, de
+</script>
+-->
+
+<script src="static/scripts/global_einstellungen.js"></script>
+<script src="static/scripts/uhr.js"></script>
+<script src="static/scripts/wetter.js"></script>
+<script src="static/scripts/taste_kombinationen.js"></script>
+<script src="static/scripts/teilchen.js"></script>
+<script src="static/scripts/coinbaseapi.js"></script>
+<script src="static/scripts/klangbeimaus.js"></script>
+<script src="static/scripts/zufall_bild.js"></script>
+<!--
+<script src="static/scripts/sprache_steuerung.js"></script>
+-->
+
+<script src="static/scripts/fragment_shader.js"></script>
+
+{% endblock %}
