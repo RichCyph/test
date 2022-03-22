@@ -1,0 +1,24 @@
+	.m_zeit{
+		width:300px;
+		min-height:200px;
+		background-color:var(--black);
+		margin:5px;
+		padding:10px;
+		border-left:1px solid var(--dark-blue);
+		position:relative;
+		
+	}
+	
+	.zeit_title--weiss{
+		color:var(--white);
+		text-align:left;
+		margin:5px;
+		padding:0px;
+	}
+	.zeit_title--blau{
+		color:var(--blue);
+		text-align:left;
+		margin:0px;
+		padding:0px;
+	}
+	
