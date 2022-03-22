@@ -1,0 +1,40 @@
+	.m_cmd{
+		width:300px;
+		height:300px;
+		background-color:var(--black);
+		margin:5px;
+		padding:10px;
+		border:1px solid var(--dark-blue);
+		position:relative;
+	}
+	
+	.cmd_title--weiss{
+		color:var(--white);
+		text-align:left;
+		margin:5px;
+		padding:0px;
+	}
+	.cmd_info--weiss{
+		color:var(--white);
+		text-align:left;
+		margin:5px;
+		padding:0px;
+		font-family: roboto;
+		letter-spacing: 0px;
+		font-size:14px;
+	}
+	
+	
+	.cmd_hr{
+		color:rgba(0,0.6,0.9,0.5);
+	}
+	
+	#cmd_textarea{
+		width:270px;
+		height:200px;
+		border:none;
+		background-color:rgba(255,255,255,0.1);
+		padding:10px;
+		border:1px solid var(--dark-blue);
+		outline:none;
+	}
