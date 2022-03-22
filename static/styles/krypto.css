@@ -1,0 +1,52 @@
+	.m_nachrichten{
+		width:300px;
+		min-height:100px;
+		background-color:var(--black);
+		margin:5px;
+		padding:10px;
+		border-bottom:1px solid var(--dark-blue);
+		border-right:1px solid var(--dark-blue);
+		position:relative;
+	}
+	
+	.nachrichten_title--weiss{
+		color:var(--white);
+		margin:5px;
+		padding:0px;
+	}
+	
+	.krypto_info_links--blau{
+		color:var(--blue);
+		font-family: roboto;
+		letter-spacing: 0px;
+		
+	}
+	
+	.krypto_info_rechts--weiss{
+		color:var(--white);
+		font-family: roboto;
+		letter-spacing: 0px;
+	}
+	
+	ul{
+	list-style:none;
+	padding:0;
+	margin:5px auto;
+	margin-right:60px;
+	width:70%;
+	}
+	
+	.munzen_list_element{
+		list-style:none;
+		padding:5px;
+		margin:5px;
+		width:100%;
+		display:flex;
+		justify-content:space-between;
+	}
+	
+	.munzen_hr{
+		color:rgba(0,0.6,0.9,0.5);
+		
+	}
+	
