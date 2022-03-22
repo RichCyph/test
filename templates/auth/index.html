@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="authenticate">
+
+	<br>
+
+	<div class="auth_div">
+		<a href="{{ url_for('login') }}" onmouseover="PlaySound('mySound')"
+										 onmouseout="StopSound('mySound')"
+										 onclick="PlaySound('mygoSound')">Login</a>
+	</div>
+
+	<br>
+
+	<div class="auth_div">
+
+		<a href="{{ url_for('registration') }}" onmouseover="PlaySound('mySound')"
+												onmouseout="StopSound('mySound')"
+												onclick="PlaySound('mygoSound')">Register</a>
+	</div>
+
+	<br>
+
+</div>
+
+{% endblock %}
