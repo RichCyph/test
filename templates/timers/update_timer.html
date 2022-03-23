@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form">
+	
+  <form method="POST" class="form">
+
+    <h1>Update Timer</h1>
+	
+	{{ form.csrf_token }}
+	<br>
+	
+	<div class="form-group">
+	{{ form.title.label }} {{ form.title(class_="form-control", size=20, value=title) }}
+	</div>
+
+	<div class="form-group">
+	{{ form.hours.label }} {{ form.hours(class_="form-control", size=20, value=hours) }}
+	</div>
+	
+	<div class="form-group">
+	{{ form.minutes.label }} {{ form.minutes(class_="form-control", size=20, value=minutes) }}
+	</div>
+	
+	<div class="form-group">
+	{{ form.seconds.label }} {{ form.seconds(class_="form-control", size=20, value=seconds) }}
+	</div>
+
+	<div class="form-group">
+    <input class="form-control" type="submit" name="update_timer" value="Update">
+	</div>
+	
+	<a href="{{ url_for('delete_timer', id=timer_id) }}"> Delete </a>
+  </form>
+
+	
+</div>
+{% endblock %}
